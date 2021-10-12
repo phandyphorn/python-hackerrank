@@ -132,3 +132,46 @@ for index in range(len(numbers)):
 print(numbers)
 
 
+# ===============================
+# ==========Number One============
+array = eval(input())
+arrayTwoD = []
+for value in array:
+    arrayChar = []
+    for element in value:
+        arrayChar.append(element.upper())
+    arrayTwoD.append(arrayChar)
+print(arrayTwoD)
+
+# ========Number Two===============
+arrayTwoD = eval(input())
+arrayOneD = []
+for row in arrayTwoD:
+    maxNum = row[0]
+    for element in range(1,len(row)):
+        if maxNum < row[element]:
+            maxNum = row[element]
+    arrayOneD.append(maxNum)
+print(arrayOneD)
+
+# =========Number Three =============
+arrayTwoD = eval(input())
+rowColShow = []
+for row in range(len(arrayTwoD)):
+    numbers = arrayTwoD[row]    # take each array to loop to find 7.
+    for col in range(len(numbers)):
+        if numbers[col] == 7:
+            rowColShow.append(row)
+            rowColShow.append(col)
+print(rowColShow)
+
+# ==========Number Four============
+array2D = eval(input())
+for row in range(len(array2D)):
+    numbers = array2D[row]
+    for num in range(len(numbers)):
+        if numbers[num] == 7:
+            numbers[num] = 8
+print(array2D)
+
+# =============================================
