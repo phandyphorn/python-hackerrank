@@ -8,7 +8,6 @@ for word in arrayWords:
 arrayCharSort.sort()
 print(arrayCharSort)
 
-
 # ======Exercise Two =======
 oldArray = eval(input("Enter List Of Nums: "))
 newArray = []
@@ -30,9 +29,9 @@ print(newArray)
 
 # =======Exercise Three ======
 def findIndexOfSeven(array):
-    for index in array:
-        if index == 7:
-            array.remove(index)
+    for num in array:
+        if num == 7:
+            array.remove(num)
     return array
 array = eval(input("Enter Numbers: "))
 result = findIndexOfSeven(array)
@@ -155,15 +154,17 @@ for row in arrayTwoD:
 print(arrayOneD)
 
 # =========Number Three =============
-arrayTwoD = eval(input())
-rowColShow = []
-for row in range(len(arrayTwoD)):
-    numbers = arrayTwoD[row]    # take each array to loop to find 7.
-    for col in range(len(numbers)):
-        if numbers[col] == 7:
-            rowColShow.append(row)
-            rowColShow.append(col)
-print(rowColShow)
+array2D = eval(input())
+result = []
+for row in range(len(array2D)):
+    rowCol = []
+    cols = array2D[row]
+    for col in range(len(cols)):
+        if cols[col] == 7:
+            rowCol.append(row)
+            rowCol.append(col)
+    result.append(rowCol)
+print(result)
 
 # ==========Number Four============
 array2D = eval(input())
@@ -291,7 +292,7 @@ result = "No teacher here!"
 averageOfAge = 0
 numberOfTeachers = len(dictionaryOfTeachers)
 sumAgeOfTeachers = 0
-if len(dictionaryOfTeachers) > 0:
+if numberOfTeachers > 0:
     for key in dictionaryOfTeachers:
         sumAgeOfTeachers += dictionaryOfTeachers[key]
         averageOfAge = sumAgeOfTeachers/numberOfTeachers
@@ -344,6 +345,7 @@ dictionaryOfMinMaxAvg["avg"] = int(getAvg(array))
 print(dictionaryOfMinMaxAvg)
 
 
+
 # ======Number Four========
 studentsData = eval(input())
 result = "No result"
@@ -361,6 +363,33 @@ if len(studentsData) > 0:
         print("All students have more than 75")
 else:
     print(result)
+
+# One more way
+# find name of max student
+def theBestStudent(studentsData):
+    maxScoreOfStudent = studentsData[0]["score"]
+    nameMaxOfStudent = studentsData[0]["name"]
+    for i in range(len(studentsData)):
+        for value in studentsData[i]:
+            if studentsData[i]["score"] > maxScoreOfStudent:
+                maxScoreOfStudent = studentsData[i]["score"]
+                nameMaxOfStudent = studentsData[i]["name"]
+    return nameMaxOfStudent
+# compare score in list
+def foundAllStudentHasHightScores(studentsData):
+    for i in range(len(studentsData)):
+        for value in studentsData[i]:
+            if studentsData[i]["score"] < 75:
+                return False
+    return True
+studentsData = eval(input())
+# studentsData = [{"name": "Bun", "score": 90},{"name": Ban, "score": 75}, {"name": "Bon","score": 79}]
+result = "No result"
+if studentsData != [] and not foundAllStudentHasHightScores(studentsData):
+    result = "The best student is " + str(theBestStudent(studentsData))
+elif studentsData != [] and foundAllStudentHasHightScores(studentsData):
+    result = "The best student is " + str(theBestStudent(studentsData)) + "\n" + "All students have more than 75"
+print(result)
 
 # ========================================================
 # ===>Number one
@@ -588,3 +617,33 @@ for key in dic1:
         dic1[key] = dic2[key]
 print(dic1)
         
+# =============Practice 4 dictionary================
+# Number One
+word = input()
+arrayDictionary = {}
+for char in word:
+    if char in arrayDictionary:
+        arrayDictionary[char] += 1
+    elif char not in arrayDictionary and char != " ":
+        arrayDictionary[char] = 1
+print(arrayDictionary)
+
+
+# Number Two
+arrayDic = eval(input())
+totalPrice = 0
+for dic in arrayDic:
+    totalPrice += dic["price"] * dic["quantity"]
+print(totalPrice)
+
+# Number Three
+nameIg = input()
+quantity = int(input())
+arrayDic = eval(input())
+result = "There is not enough stock in the kitchen for this ingredient"
+for dic in arrayDic:
+    if dic["ingredient"] == nameIg:
+        dic["quantity"] = dic["quantity"]-quantity
+        if dic["quantity"] >= 0:
+            result = arrayDic
+print(result)
